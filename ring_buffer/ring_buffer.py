@@ -12,14 +12,19 @@ class RingBuffer:
         if self.current == None:
             self.current = 0 
 
+        # this starts as None
         current_head = self.storage.head
         # if our head is None, move item to tail
         if current_head is None:
+            # so the head/prev are now None, tail is item
             self.storage.add_to_tail(item)
             self.current += 1
             return
         else:
             # loop through current
+            # as item gets passed in after the 1st item, 
+            # this is basically adding everything behind item1 
+            # and moving the head 
             for i in range(self.current):
                 # if next node/element is not None
                 if current_head.next != None:
